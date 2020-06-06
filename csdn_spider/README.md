@@ -16,3 +16,6 @@ db = MySQLDatabase("csdn_spider", host="127.0.0.1", port=3333, user="root", pass
 * 2、执行`python3 models.py`, 生成数据table
 
 * 3、执行`python3 spider.py`, 爬取数据并写入到数据库中
+
+
+##### 二、线程池执行爬虫`threadpool_csdn.py`
