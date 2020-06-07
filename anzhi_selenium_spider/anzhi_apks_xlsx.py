@@ -16,8 +16,9 @@ import pandas as pd
 
 from fake_useragent import UserAgent
 
-# option = webdriver.ChromeOptions()
-# option.add_argument('--headless') # 不启动chrome界面模式
+chrome_options = webdriver.ChromeOptions()
+# chrome_options.add_argument('--headless') # 不启动chrome界面模式
+chrome_options.add_argument("blink-settings=imagesEnabled=false")#设置不加载图片
 
 def write_excel(typename, name, openurl, downloadcount, company, size, downloadurl):
     # print(typename)
@@ -154,7 +155,7 @@ sheet.write(row, 6, '下载地址')
 # browser.close()
 
 if __name__ == '__main__':
-    browser = webdriver.Chrome(executable_path="/Users/eric/envirs/chromedriver")
+    browser = webdriver.Chrome(executable_path="/Users/eric/envirs/chromedriver", chrome_options=chrome_options)
 
     for i in range(10,20): # 40 - 100
         htmlUrl = "http://www.anzhi.com/list_1_" + str(i) + "_new.html"
