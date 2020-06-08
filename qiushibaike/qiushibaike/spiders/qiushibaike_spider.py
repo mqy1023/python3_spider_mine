@@ -31,8 +31,6 @@ class QiushibaikeSpiderSpider(scrapy.Spider):
         content_left_div = response.xpath('//*[@class="col1 old-style-col1"]')
         content_list_div = content_left_div.xpath('./div')
 
-        print('aaaa=', len(content_list_div))
-
         for content_div in content_list_div:
             item = QiushibaikeItem()
             item['author'] = content_div.xpath('./div/a[2]/h2/text()').get()
