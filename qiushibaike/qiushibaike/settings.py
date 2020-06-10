@@ -92,3 +92,12 @@ ROBOTSTXT_OBEY = True
 
 # 设置编码格式
 FEED_EXPORT_ENCODING = 'utf-8'
+
+
+# 将系统的UserAgent中间件设置为None，这样就不会启用，否则默认系统的这个中间会被启用
+# 定义RANDOM_UA_TYPE这个是设置一个默认的值，如果这里不设置我们会在代码中进行设置
+DOWNLOADER_MIDDLEWARES = {
+    'qiushibaike.middlewares.RandomUserAgentMiddleware': 543,
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+}
+RANDOM_UA_TYPE = 'random'

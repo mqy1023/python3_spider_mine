@@ -8,9 +8,9 @@ class QiushibaikeSpiderSpider(scrapy.Spider):
     allowed_domains = ['qiushibaike.com']
     # start_urls = ['http://qiushibaike.com/']
 
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/73.0.3683.86 Chrome/73.0.3683.86 Safari/537.36'
-    }
+    # headers = {
+    #     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/73.0.3683.86 Chrome/73.0.3683.86 Safari/537.36'
+    # }
 
     # 定义请求链接
     def start_requests(self):
@@ -19,7 +19,7 @@ class QiushibaikeSpiderSpider(scrapy.Spider):
             # 'https://www.qiushibaike.com/text/page/2/'
         ]
         for url in urls:
-            yield scrapy.Request(url=url, callback=self.parse, headers=self.headers) # 回调我们的数据解析方
+            yield scrapy.Request(url=url, callback=self.parse) # 回调我们的数据解析方
 
     def parse(self, response):
         # page = response.url.split("/")[-2]

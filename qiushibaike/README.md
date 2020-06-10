@@ -96,7 +96,47 @@ class QiushibaikeSpiderSpider(scrapy.Spider):
 
 ```
 
-##### 四、执行爬虫命令
+
+##### 四、设置user-agent随机代理
+
+* 1、`middlewares.py`中新增
+
+```python
+from fake_useragent import UserAgent
+
+
+class RandomUserAgentMiddleware(object):
+    def __init__(self, crawler):
+        super(RandomUserAgentMiddleware, self).__init__()
+
+        self.ua = UserAgent()
+        self.ua_type = crawler.settings.get('RANDOM_UA_TYPE', 'random')
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(crawler)
+
+    def process_request(self, request, spider):
+        def get_ua():
+            return getattr(self.ua, self.ua_type)
+
+        random_agent = get_ua()
+        request.headers.setdefault('User-Agent', get_ua())
+```
+
+* 2、`setting.py`中配置指定`RandomUserAgentMiddleware`
+
+```python
+# 将系统的UserAgent中间件设置为None，这样就不会启用，否则默认系统的这个中间会被启用
+# 定义RANDOM_UA_TYPE这个是设置一个默认的值，如果这里不设置我们会在代码中进行设置
+DOWNLOADER_MIDDLEWARES = {
+    'qiushibaike.middlewares.RandomUserAgentMiddleware': 543,
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+}
+RANDOM_UA_TYPE = 'random'
+```
+
+##### 五、执行爬虫命令
 
 * 1、`scrapy crawl qiushibaike_spider`
 
