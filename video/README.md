@@ -11,6 +11,18 @@ export FFMPEG_HOME=/Users/eric/envirs/ffmpeg/
 export PATH=$PATH:$FFMPEG_HOME/bin
 ```
 
+* 3、对应的下载命令
+
+`ffmpeg -i "http://youku.com-youku.net/20180614/11920_4c9e1cc1/index.m3u8" "第001集.mp4"`
+
+
+> 如果用 Python 接口，也只需要两行代码：
+
+```python
+import ffmpy3
+ffmpy3.FFmpeg(inputs={'http://youku.com-youku.net/20180614/11920_4c9e1cc1/index.m3u8': None}, outputs={'第001集.mp4':None}).run()
+```
+
 ##### 二、资源网
 
-[资源网](http://www.jisudhw.com/index.php)
+[OK资源网](http://www.jisudhw.com/index.php)
